@@ -1,9 +1,14 @@
 import { useEffect, useState } from 'preact/hooks';
 import type { Lang } from './lib/days';
-import { today as computeToday } from './lib/clock';
+import { photoTimestamp, today as computeToday } from './lib/clock';
+import { shrinkPhoto } from './lib/image';
 import { setVolume } from './lib/sounds';
 import {
   DEFAULT_SETTINGS,
+  addPhoto,
+  deletePhoto,
+  getPhotos,
+  type Photo,
   deleteRecording,
   resetProgress,
   saveRecording,
@@ -28,6 +33,7 @@ export interface AppState {
   overrides: Record<number, number>;
   recordings: Record<number, Lang[]>;
   today: string;
+  photoVersion: number; // zählt hoch, wenn Fotos dazukommen oder gelöscht werden
 }
 
 let state: AppState = {
@@ -38,6 +44,7 @@ let state: AppState = {
   overrides: {},
   recordings: {},
   today: computeToday(null),
+  photoVersion: 0,
 };
 
 const listeners = new Set<(s: AppState) => void>();
@@ -123,6 +130,45 @@ export async function storeRecording(tag: number, lang: Lang, blob: Blob) {
 export async function removeRecording(tag: number, lang: Lang) {
   await deleteRecording(db(), tag, lang);
   await reload();
+}
+
+/* ---------- Fotos (Forschertagebuch) ---------- */
+
+export async function savePhoto(tag: number, file: Blob) {
+  const blob = await shrinkPhoto(file);
+  await addPhoto(db(), tag, blob, photoTimestamp(state.today));
+  set({ photoVersion: state.photoVersion + 1 });
+}
+
+export async function removePhoto(id: number) {
+  await deletePhoto(db(), id);
+  set({ photoVersion: state.photoVersion + 1 });
+}
+
+export interface PhotoView extends Photo {
+  url: string;
+}
+
+/** Fotos (eines Tages oder alle) mit Bild-URLs; lädt neu, wenn Fotos dazukommen. */
+export function usePhotos(tag?: number): PhotoView[] {
+  const { photoVersion, db: database } = useAppState();
+  const [list, setList] = useState<PhotoView[]>([]);
+  useEffect(() => {
+    if (!database) return;
+    let cancelled = false;
+    let urls: string[] = [];
+    void getPhotos(database, tag).then((photos) => {
+      if (cancelled) return;
+      const views = photos.map((p) => ({ ...p, url: URL.createObjectURL(p.blob) }));
+      urls = views.map((v) => v.url);
+      setList(views);
+    });
+    return () => {
+      cancelled = true;
+      urls.forEach((u) => URL.revokeObjectURL(u));
+    };
+  }, [tag, photoVersion, database]);
+  return list;
 }
 
 export async function resetAllProgress() {

@@ -4,6 +4,7 @@ export type Route =
   | { name: 'calendar'; nudge?: number }
   | { name: 'day'; tag: number }
   | { name: 'akte' }
+  | { name: 'tagebuch' }
   | { name: 'eltern' }
   | { name: 'print'; kind: 'qr' | 'sticker' };
 
@@ -15,6 +16,7 @@ export function parseHash(hash: string): Route {
     if (tag >= 1 && tag <= 24) return { name: 'day', tag };
   }
   if (h === 'akte') return { name: 'akte' };
+  if (h === 'tagebuch') return { name: 'tagebuch' };
   if (h === 'eltern') return { name: 'eltern' };
   if (h === 'eltern-qr') return { name: 'print', kind: 'qr' };
   if (h === 'eltern-sticker') return { name: 'print', kind: 'sticker' };

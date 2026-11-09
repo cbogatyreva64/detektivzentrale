@@ -6,7 +6,8 @@ import { lockParent } from '../../lib/gate';
 import { sfx } from '../../lib/sounds';
 import { getPhotos } from '../../lib/storage';
 import { go } from '../../router';
-import { getState, resetAllProgress, updateSetting, useAppState } from '../../store';
+import { getState, removePhoto, resetAllProgress, updateSetting, useAppState, usePhotos } from '../../store';
+import { shortDate } from '../../lib/clock';
 import { baseUrlProblem, dayUrl, normalizeBase } from '../../lib/qr';
 import { DayEditor } from './DayEditor';
 import { currentAppUrl } from './PrintSheet';
@@ -18,7 +19,8 @@ function addDays(iso: string, n: number): string {
 
 export function ParentArea() {
   const { settings, today, progress, recordings } = useAppState();
-  const [photoCount, setPhotoCount] = useState<number | null>(null);
+  const allPhotos = usePhotos();
+  const photoCount = allPhotos.length;
   const [busy, setBusy] = useState(false);
   const [storageInfo, setStorageInfo] = useState('');
   const [baseDraft, setBaseDraft] = useState(settings.baseUrl);
@@ -26,8 +28,6 @@ export function ParentArea() {
   const baseProblem = baseUrlProblem(base);
 
   useEffect(() => {
-    const db = getState().db;
-    if (db) void getPhotos(db).then((p) => setPhotoCount(p.length));
     void (async () => {
       try {
         const persisted = await navigator.storage?.persisted?.();
@@ -38,7 +38,7 @@ export function ParentArea() {
         /* nicht verfügbar */
       }
     })();
-  }, []);
+  }, [photoCount]);
 
   const solvedCount = Object.keys(progress).length;
   const recCount = Object.values(recordings).reduce((a, l) => a + l.length, 0);
@@ -145,11 +145,33 @@ export function ParentArea() {
       <section class="p-card">
         <h2>Fotos</h2>
         <div class="p-row">
-          <span>{photoCount === null ? '…' : `${photoCount} Fotos im Forschertagebuch`}</span>
+          <span>{photoCount} Fotos im Forschertagebuch</span>
           <button class="p-btn" onClick={exportPhotos} disabled={busy || !photoCount}>
             {busy ? 'Packe ZIP …' : 'Alle Fotos als ZIP'}
           </button>
         </div>
+        {photoCount > 0 && (
+          <>
+            <p class="p-note">Verwackelte Fotos kannst du hier löschen. Das Kind kann selbst keine Fotos löschen.</p>
+            <div class="p-photos">
+              {allPhotos.map((p) => (
+                <figure key={p.id} class="p-photo">
+                  <img src={p.url} alt="" loading="lazy" />
+                  <figcaption>
+                    Tag {p.tag} · {shortDate(p.takenAt)}
+                  </figcaption>
+                  <button
+                    class="p-photo-del"
+                    aria-label="Foto löschen"
+                    onClick={() => confirm('Dieses Foto löschen?') && p.id !== undefined && void removePhoto(p.id)}
+                  >
+                    ×
+                  </button>
+                </figure>
+              ))}
+            </div>
+          </>
+        )}
         {storageInfo && <p class="p-note">Speicher: {storageInfo}</p>}
       </section>
 

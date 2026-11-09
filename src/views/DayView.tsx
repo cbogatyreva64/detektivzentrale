@@ -4,13 +4,25 @@ import { effectiveCode } from '../lib/codeCheck';
 import { isUnlocked } from '../lib/dateLock';
 import { sfx } from '../lib/sounds';
 import { go } from '../router';
-import { solve, updateSetting, useAppState } from '../store';
+import { solve, updateSetting, useAppState, usePhotos } from '../store';
+import { TIMELINE_DAYS } from '../lib/journal';
+import { CameraButton, PhotoStrip } from '../components/Photos';
 import { CodeLock } from '../components/CodeLock';
 import { FundIcon, IconFolder, IconHome } from '../components/Icons';
 import { MessagePlayer } from '../components/MessagePlayer';
 import { Stamp } from '../components/Stamp';
 import { Calendar } from './Calendar';
 import { Finale } from './Finale';
+
+/** Experiment-Tage: nach dem Lösen Fotos fürs Forschertagebuch. */
+function ResearchSection({ tag }: { tag: number }) {
+  const photos = usePhotos(tag);
+  return (
+    <div class="research">
+      <PhotoStrip photos={photos} timeline={TIMELINE_DAYS.has(tag)} camera={<CameraButton tag={tag} />} />
+    </div>
+  );
+}
 
 export function DayView({ tag }: { tag: number }) {
   const { today, progress, overrides, recordings, settings } = useAppState();
@@ -88,6 +100,7 @@ export function DayView({ tag }: { tag: number }) {
               </button>
             </div>
           )}
+          {solved && !flying && day.tagebuch && <ResearchSection tag={tag} />}
         </section>
       </div>
 

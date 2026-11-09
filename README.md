@@ -3,8 +3,17 @@
 Digitaler Begleiter zum Detektiv-Adventskalender. Progressive Web App mit Preact, TypeScript und Vite.
 Alle Daten (Fortschritt, Aufnahmen, Fotos) bleiben lokal auf dem Gerät in IndexedDB. Es gibt kein Backend und kein Tracking.
 
-> Stand: Kalender, Tagesansicht, Zahlenschloss, Fallakte, Elternbereich und Druckvorlagen sind fertig.
-> Forschertagebuch und Offline-Modus folgen.
+> Stand: Kalender, Tagesansicht, Zahlenschloss, Fallakte, Elternbereich, Druckvorlagen und Forschertagebuch sind fertig.
+> Der Offline-Modus (installierbar, Service Worker) folgt.
+
+## Forschertagebuch
+
+- An Experiment-Tagen (3, 5, 9, 12, 15, 19, 22) erscheint nach dem Lösen ein grüner **Kamera-Button**. Er öffnet am iPad direkt die Rückkamera.
+- Man kann beliebig viele Fotos machen, auch an späteren Tagen: über die Tür des Tages oder im Tagebuch selbst.
+- Die **Kresse** (Tag 9) erscheint als Zeitreihe. Fotos sind nach Datum gruppiert, darunter zeigen Punkte, der wievielte Tag es ist.
+- Das grüne Heft-Symbol oben im Kalender öffnet die Übersicht aller Experimente. Ein Foto antippen zeigt es groß.
+- Fotos werden vor dem Speichern auf höchstens 1600 px verkleinert, etwa 0,3–0,6 MB pro Foto. Sie verlassen das Gerät nicht.
+- Das Kind kann keine Fotos löschen. Das geht im Elternbereich unter „Fotos“, dort gibt es auch den ZIP-Export.
 
 ## Elternbereich
 

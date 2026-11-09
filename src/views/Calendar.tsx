@@ -4,7 +4,7 @@ import { doorState } from '../lib/dateLock';
 import { sfx } from '../lib/sounds';
 import { go } from '../router';
 import { useAppState } from '../store';
-import { IconFolder, IconKey, IconLock } from '../components/Icons';
+import { IconFolder, IconJournal, IconKey, IconLock } from '../components/Icons';
 import { LongPress } from '../components/LongPress';
 import { Stamp } from '../components/Stamp';
 
@@ -36,9 +36,14 @@ export function Calendar({ nudge }: { nudge?: number }) {
           <span class="brand-mark">?</span>
           <span class="brand-text">Detektivzentrale</span>
         </div>
-        <button class="round-btn" onClick={() => { sfx.tap(); go('akte'); }} aria-label="Fallakte">
-          <IconFolder size={40} />
-        </button>
+        <div class="topbar-actions">
+          <button class="round-btn btn-green" onClick={() => { sfx.tap(); go('tagebuch'); }} aria-label="Forschertagebuch">
+            <IconJournal size={40} />
+          </button>
+          <button class="round-btn" onClick={() => { sfx.tap(); go('akte'); }} aria-label="Fallakte">
+            <IconFolder size={40} />
+          </button>
+        </div>
       </header>
 
       <div class="door-grid">

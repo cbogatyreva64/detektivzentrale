@@ -1169,3 +1169,240 @@ button:focus-visible {
     break-inside: avoid;
   }
 }
+
+/* ============ Forschertagebuch ============ */
+.topbar-actions {
+  display: flex;
+  gap: 12px;
+}
+.btn-green {
+  background: var(--c-green);
+}
+.journal-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--c-green);
+}
+.journal-list {
+  display: grid;
+  gap: 14px;
+}
+.exp-card {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  padding: 14px;
+  border-radius: var(--radius);
+  background: var(--c-card);
+  box-shadow: var(--shadow);
+}
+.exp-card.is-pending {
+  background: rgba(255, 250, 240, 0.55);
+  box-shadow: none;
+  border: 3px dashed var(--c-paper-2);
+}
+.exp-head {
+  flex: none;
+  background: none;
+  padding: 0;
+}
+.exp-placeholder {
+  width: 76px;
+  height: 76px;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  border-radius: 50%;
+  background: var(--c-paper-2);
+  color: var(--c-muted);
+}
+.exp-placeholder b {
+  font-size: 16px;
+}
+.exp-body {
+  flex: 1;
+  min-width: 0;
+  display: grid;
+  gap: 6px;
+}
+.exp-title {
+  font-size: 14px;
+  color: var(--c-muted);
+}
+.exp-empty {
+  height: 80px;
+}
+
+.photo-strip {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  overflow-x: auto;
+  padding: 4px 2px 8px;
+  scroll-snap-type: x proximity;
+  -webkit-overflow-scrolling: touch;
+}
+.thumb {
+  flex: none;
+  width: 96px;
+  height: 96px;
+  padding: 0;
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--c-paper-2);
+  box-shadow: var(--shadow);
+  scroll-snap-align: start;
+}
+.thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Kresse: Fotos pro Tag, darunter ein wachsender Punkte-Zähler */
+.is-timeline {
+  align-items: flex-start;
+}
+.tl-day {
+  flex: none;
+  display: grid;
+  gap: 6px;
+  justify-items: center;
+  padding: 0 10px 0 0;
+  border-right: 3px dotted var(--c-green);
+}
+.tl-photos {
+  display: flex;
+  gap: 8px;
+}
+.tl-label {
+  display: grid;
+  justify-items: center;
+  gap: 2px;
+}
+.tl-dots {
+  display: flex;
+  gap: 3px;
+}
+.tl-dots span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--c-green);
+}
+.tl-date {
+  font-size: 12px;
+  color: var(--c-muted);
+}
+
+.camera-btn {
+  flex: none;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--c-green);
+  color: #fff;
+  box-shadow: var(--shadow);
+}
+.camera-big {
+  width: 104px;
+  height: 104px;
+}
+.camera-small {
+  width: 80px;
+  height: 80px;
+}
+.camera-btn.is-busy {
+  opacity: 0.5;
+}
+
+.research {
+  width: 100%;
+  max-width: 560px;
+  margin-top: 10px;
+  padding: 14px;
+  border-radius: var(--radius);
+  background: var(--c-card);
+  box-shadow: var(--shadow);
+}
+.research .photo-strip {
+  justify-content: flex-start;
+}
+
+.viewer {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background: rgba(20, 30, 45, 0.94);
+  display: grid;
+  place-items: center;
+}
+.viewer img {
+  max-width: 92vw;
+  max-height: 82vh;
+  border-radius: 12px;
+  object-fit: contain;
+}
+.viewer-date {
+  position: absolute;
+  bottom: max(18px, env(safe-area-inset-bottom));
+  color: #fff;
+  font-weight: 800;
+  font-size: 18px;
+}
+.viewer-close {
+  position: absolute;
+  top: max(16px, env(safe-area-inset-top));
+  right: 16px;
+}
+.viewer-prev,
+.viewer-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.viewer-prev {
+  left: 16px;
+}
+.viewer-next {
+  right: 16px;
+}
+
+/* Fotos im Elternbereich */
+.p-photos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 10px;
+  margin: 8px 0;
+}
+.p-photo {
+  position: relative;
+  margin: 0;
+}
+.p-photo img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 10px;
+  display: block;
+}
+.p-photo figcaption {
+  font-size: 13px;
+  color: var(--c-muted);
+}
+.p-photo-del {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(184, 70, 60, 0.92);
+  color: #fff;
+  font-size: 22px;
+  line-height: 1;
+}

@@ -75,6 +75,34 @@ export const IconLock = (p: P) => (
   </Svg>
 );
 
+export const IconCamera = (p: P) => (
+  <Svg {...p}>
+    <path d="M4 8.5A1.5 1.5 0 0 1 5.5 7h2.2l1.5-2.2h5.6L16.3 7h2.2A1.5 1.5 0 0 1 20 8.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 17.5z" />
+    <circle cx="12" cy="13" r="3.5" />
+  </Svg>
+);
+
+/** Forschertagebuch: Heft mit Reagenzglas */
+export const IconJournal = (p: P) => (
+  <Svg {...p}>
+    <rect x="4.5" y="3" width="15" height="18" rx="2" />
+    <path d="M8 3v18" />
+    <path d="M12 7.5h4M13 7.5v7.5a1.5 1.5 0 0 0 3 0V7.5" />
+  </Svg>
+);
+
+export const IconClose = (p: P) => (
+  <Svg {...p}>
+    <path d="M6 6l12 12M18 6 6 18" stroke-width="2.6" />
+  </Svg>
+);
+
+export const IconArrow = ({ dir = 'right', ...p }: P & { dir?: 'left' | 'right' }) => (
+  <Svg {...p}>
+    <path d={dir === 'right' ? 'M9 5l7 7-7 7' : 'M15 5l-7 7 7 7'} stroke-width="2.6" />
+  </Svg>
+);
+
 export const IconLupe = (p: P) => (
   <Svg {...p}>
     <circle cx="10" cy="10" r="6" />

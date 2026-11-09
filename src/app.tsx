@@ -8,6 +8,7 @@ import { init, tick, updateSetting, useAppState } from './store';
 import { Calendar } from './views/Calendar';
 import { CaseFile } from './views/CaseFile';
 import { DayView } from './views/DayView';
+import { Journal } from './views/Journal';
 
 export function App() {
   const route = useRoute();
@@ -52,6 +53,8 @@ export function App() {
         <DayView key={route.tag} tag={route.tag} />
       ) : route.name === 'akte' ? (
         <CaseFile />
+      ) : route.name === 'tagebuch' ? (
+        <Journal />
       ) : (
         <Calendar />
       )}
