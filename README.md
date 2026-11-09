@@ -3,8 +3,8 @@
 Digitaler Begleiter zum Detektiv-Adventskalender. Progressive Web App mit Preact, TypeScript und Vite.
 Alle Daten (Fortschritt, Aufnahmen, Fotos) bleiben lokal auf dem Gerät in IndexedDB. Es gibt kein Backend und kein Tracking.
 
-> Stand: Kalender, Tagesansicht, Zahlenschloss, Fallakte und Elternbereich sind fertig.
-> Druckansicht, Forschertagebuch und Offline-Modus folgen.
+> Stand: Kalender, Tagesansicht, Zahlenschloss, Fallakte, Elternbereich und Druckvorlagen sind fertig.
+> Forschertagebuch und Offline-Modus folgen.
 
 ## Elternbereich
 
@@ -23,6 +23,15 @@ Danach „Testmodus beenden“ und **„Fortschritt zurücksetzen“**, damit am
 Zurücksetzen löscht nur die gelösten Fälle. Aufnahmen, Codes und Fotos bleiben erhalten.
 
 **Ton:** Effekt-Töne an/aus und Lautstärke. **Fotos:** alle Bilder aus dem Forschertagebuch als ZIP herunterladen.
+
+**Druckvorlagen:**
+- Zuerst die **Adresse der App** eintragen, also die GitHub-Pages-Adresse, z. B. `https://<name>.github.io/detektivzentrale/`.
+  Steht dort `localhost`, warnt die App, weil solche QR-Codes am iPad nicht funktionieren.
+- **QR-Codes drucken:** 24 Codes auf einer A4-Seite, jeder mit Lupe und Tagesnummer. Jeder Code öffnet direkt seinen Tag (`…/#tag-5`).
+- **Code-Sticker drucken:** große Zahl mit Würfelbild (1–9) oder Zehnerfeldern (ab 10). Es gelten immer die aktuellen Codes.
+  Das kleine graue „T5“ oben links ist nur für dich.
+- Im Druckdialog **A4 und 100 %** wählen, nicht „An Seite anpassen“. Dann entlang der gestrichelten Linien schneiden.
+- Wenn du einen Code änderst, den Sticker neu drucken. Ändert sich die Adresse der App, die QR-Codes neu drucken.
 
 ## Entwicklung
 

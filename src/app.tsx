@@ -3,6 +3,7 @@ import { isParentUnlocked } from './lib/gate';
 import { useRoute } from './router';
 import { Gate } from './views/parent/Gate';
 import { ParentArea } from './views/parent/ParentArea';
+import { PrintSheet } from './views/parent/PrintSheet';
 import { init, tick, updateSetting, useAppState } from './store';
 import { Calendar } from './views/Calendar';
 import { CaseFile } from './views/CaseFile';
@@ -35,7 +36,13 @@ export function App() {
           <button onClick={() => void updateSetting('simulatedDate', null)}>beenden</button>
         </div>
       )}
-      {route.name === 'eltern' ? (
+      {route.name === 'print' ? (
+        isParentUnlocked() ? (
+          <PrintSheet kind={route.kind} />
+        ) : (
+          <Gate onUnlock={() => setUnlockTick((n) => n + 1)} />
+        )
+      ) : route.name === 'eltern' ? (
         isParentUnlocked() ? (
           <ParentArea />
         ) : (

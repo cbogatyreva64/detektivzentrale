@@ -7,7 +7,9 @@ import { sfx } from '../../lib/sounds';
 import { getPhotos } from '../../lib/storage';
 import { go } from '../../router';
 import { getState, resetAllProgress, updateSetting, useAppState } from '../../store';
+import { baseUrlProblem, dayUrl, normalizeBase } from '../../lib/qr';
 import { DayEditor } from './DayEditor';
+import { currentAppUrl } from './PrintSheet';
 
 function addDays(iso: string, n: number): string {
   const [y, m, d] = iso.split('-').map(Number);
@@ -19,6 +21,9 @@ export function ParentArea() {
   const [photoCount, setPhotoCount] = useState<number | null>(null);
   const [busy, setBusy] = useState(false);
   const [storageInfo, setStorageInfo] = useState('');
+  const [baseDraft, setBaseDraft] = useState(settings.baseUrl);
+  const base = normalizeBase(baseDraft, currentAppUrl());
+  const baseProblem = baseUrlProblem(base);
 
   useEffect(() => {
     const db = getState().db;
@@ -146,6 +151,34 @@ export function ParentArea() {
           </button>
         </div>
         {storageInfo && <p class="p-note">Speicher: {storageInfo}</p>}
+      </section>
+
+      <section class="p-card">
+        <h2>Druckvorlagen</h2>
+        <label class="p-label">
+          Adresse der App (für die QR-Codes)
+          <input
+            class="p-input p-wide"
+            type="url"
+            inputMode="url"
+            placeholder={`leer = ${currentAppUrl()}`}
+            value={baseDraft}
+            onInput={(e) => setBaseDraft(e.currentTarget.value)}
+            onBlur={() => void updateSetting('baseUrl', baseDraft.trim())}
+          />
+        </label>
+        <p class="p-note">
+          QR-Codes zeigen auf <code>{base ? dayUrl(base, 5) : '–'}</code> (Beispiel Tag 5).
+        </p>
+        {baseProblem && <p class="p-error">{baseProblem}</p>}
+        <div class="p-row">
+          <button class="p-btn p-primary" onClick={() => void updateSetting('baseUrl', baseDraft.trim()).then(() => go('eltern-qr'))}>
+            QR-Codes drucken
+          </button>
+          <button class="p-btn p-primary" onClick={() => go('eltern-sticker')}>
+            Code-Sticker drucken
+          </button>
+        </div>
       </section>
 
       <section class="p-card">

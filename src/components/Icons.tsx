@@ -75,6 +75,13 @@ export const IconLock = (p: P) => (
   </Svg>
 );
 
+export const IconLupe = (p: P) => (
+  <Svg {...p}>
+    <circle cx="10" cy="10" r="6" />
+    <path d="m14.5 14.5 6 6" stroke-width="2.6" />
+  </Svg>
+);
+
 export const IconKey = (p: P) => (
   <Svg {...p}>
     <circle cx="8" cy="12" r="3.5" />

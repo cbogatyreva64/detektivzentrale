@@ -4,7 +4,8 @@ export type Route =
   | { name: 'calendar'; nudge?: number }
   | { name: 'day'; tag: number }
   | { name: 'akte' }
-  | { name: 'eltern' };
+  | { name: 'eltern' }
+  | { name: 'print'; kind: 'qr' | 'sticker' };
 
 export function parseHash(hash: string): Route {
   const h = hash.replace(/^#\/?/, '');
@@ -15,6 +16,8 @@ export function parseHash(hash: string): Route {
   }
   if (h === 'akte') return { name: 'akte' };
   if (h === 'eltern') return { name: 'eltern' };
+  if (h === 'eltern-qr') return { name: 'print', kind: 'qr' };
+  if (h === 'eltern-sticker') return { name: 'print', kind: 'sticker' };
   return { name: 'calendar' };
 }
 
