@@ -6,7 +6,7 @@ import { lockParent } from '../../lib/gate';
 import { sfx } from '../../lib/sounds';
 import { getPhotos } from '../../lib/storage';
 import { go } from '../../router';
-import { getState, removePhoto, resetAllProgress, updateSetting, useAppState, usePhotos } from '../../store';
+import { getState, removeAllPhotos, removePhoto, resetAllProgress, updateSetting, useAppState, usePhotos } from '../../store';
 import { shortDate } from '../../lib/clock';
 import { baseUrlProblem, dayUrl, normalizeBase } from '../../lib/qr';
 import { DayEditor } from './DayEditor';
@@ -61,6 +61,16 @@ export function ParentArea() {
     }
   }
 
+  async function cleanupTestData() {
+    const msg =
+      `Testdaten löschen?\n\n• ${solvedCount} gelöste Fälle → ungelöst\n• ${photoCount} Fotos → gelöscht\n• Testmodus → aus\n\n` +
+      'Aufnahmen und Codes bleiben. Das lässt sich nicht rückgängig machen.';
+    if (!confirm(msg)) return;
+    await updateSetting('simulatedDate', null);
+    await resetAllProgress();
+    await removeAllPhotos();
+  }
+
   async function reset() {
     if (confirm('Wirklich alle gelösten Fälle zurücksetzen? Aufnahmen, Codes und Fotos bleiben erhalten.')) {
       await resetAllProgress();
@@ -107,11 +117,27 @@ export function ParentArea() {
         </div>
         <div class="p-row">
           <span>
-            {solvedCount} von 24 Fällen gelöst · {recCount} Aufnahmen
+            {solvedCount} von 24 Fällen gelöst · {photoCount} Fotos · {recCount} Aufnahmen
           </span>
-          <button class="p-btn p-danger" onClick={reset} disabled={solvedCount === 0}>
-            Fortschritt zurücksetzen
-          </button>
+        </div>
+        <div class="p-reset">
+          <strong>Nach dem Testen aufräumen</strong>
+          <p class="p-note">
+            Beendet den Testmodus, setzt alle Fälle auf „ungelöst“ und löscht alle Fotos.
+            <b> Aufnahmen und Codes bleiben erhalten.</b> Einzelne Fälle setzt du unten in der Tagesliste zurück.
+          </p>
+          <div class="p-row">
+            <button
+              class="p-btn p-danger"
+              onClick={cleanupTestData}
+              disabled={solvedCount === 0 && photoCount === 0 && !settings.simulatedDate}
+            >
+              Testdaten löschen
+            </button>
+            <button class="p-btn" onClick={reset} disabled={solvedCount === 0}>
+              Nur Fälle zurücksetzen
+            </button>
+          </div>
         </div>
       </section>
 

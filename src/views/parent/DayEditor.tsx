@@ -2,7 +2,7 @@ import { useState } from 'preact/hooks';
 import { shortDate } from '../../lib/clock';
 import { effectiveCode, isValidCode } from '../../lib/codeCheck';
 import type { Day } from '../../lib/days';
-import { changeCode, useAppState } from '../../store';
+import { changeCode, unsolveDay, useAppState } from '../../store';
 import { RecorderCell } from './RecorderCell';
 
 const TYP_LABEL = { lego: 'Lego', experiment: 'Experiment', pixi: 'Pixi' } as const;
@@ -72,6 +72,20 @@ export function DayEditor({ day }: { day: Day }) {
             {!draftValid && <span class="p-error">1–99</span>}
           </div>
           <p class="p-note">Nach einer Code-Änderung den Sticker für diesen Tag neu drucken.</p>
+          {progress[day.tag] && (
+            <div class="p-row">
+              <span>Gelöst am {shortDate(progress[day.tag].solvedAt)}</span>
+              <button
+                class="p-btn p-danger"
+                onClick={() =>
+                  confirm(`Tag ${day.tag} wieder auf „ungelöst“ setzen? Der Stempel verschwindet aus der Fallakte.`) &&
+                  void unsolveDay(day.tag)
+                }
+              >
+                Fall zurücksetzen
+              </button>
+            </div>
+          )}
           <div class="rec-grid">
             <RecorderCell tag={day.tag} lang="de" present={langs.includes('de')} />
             <RecorderCell tag={day.tag} lang="ru" present={langs.includes('ru')} />

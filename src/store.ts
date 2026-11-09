@@ -6,7 +6,9 @@ import { setVolume } from './lib/sounds';
 import {
   DEFAULT_SETTINGS,
   addPhoto,
+  deleteAllPhotos,
   deletePhoto,
+  unsolve,
   getPhotos,
   type Photo,
   deleteRecording,
@@ -169,6 +171,16 @@ export function usePhotos(tag?: number): PhotoView[] {
     };
   }, [tag, photoVersion, database]);
   return list;
+}
+
+export async function unsolveDay(tag: number) {
+  await unsolve(db(), tag);
+  await reload();
+}
+
+export async function removeAllPhotos() {
+  await deleteAllPhotos(db());
+  set({ photoVersion: state.photoVersion + 1 });
 }
 
 export async function resetAllProgress() {

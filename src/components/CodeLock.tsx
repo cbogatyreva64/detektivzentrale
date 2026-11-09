@@ -75,14 +75,14 @@ export function CodeLock({ code, solved, onSolved }: { code: number; solved: boo
         <div class="keypad" role="group" aria-label="Zahlenschloss">
           {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((d) => (
             <button key={d} class="key" onClick={() => press(d)} aria-label={String(d)}>
-              {d}
+              <span class="key-digit">{d}</span>
             </button>
           ))}
           <button class="key key-erase" onClick={erase} aria-label="Löschen">
             <IconBackspace size={40} />
           </button>
           <button class="key" onClick={() => press(0)} aria-label="0">
-            0
+            <span class="key-digit">0</span>
           </button>
           <button class={`key key-ok ${input ? '' : 'is-idle'}`} onClick={confirm} aria-label="Prüfen">
             <IconCheck size={44} />

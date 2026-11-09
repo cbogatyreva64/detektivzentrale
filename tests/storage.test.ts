@@ -3,6 +3,8 @@ import { beforeEach, describe, expect, it } from 'vitest';
 import {
   DEFAULT_SETTINGS,
   addPhoto,
+  deleteAllPhotos,
+  unsolve,
   getCodeOverrides,
   getPhotos,
   getProgress,
@@ -43,6 +45,29 @@ describe('Fortschritt', () => {
     await resetProgress(db);
     expect(await getProgress(db)).toEqual({});
     expect((await getSettings(db)).finaleSeen).toBe(false);
+  });
+});
+
+describe('Einzelnen Fall zurücksetzen', () => {
+  it('setzt nur diesen Tag auf ungelöst', async () => {
+    await markSolved(db, 3, '2026-12-03');
+    await markSolved(db, 4, '2026-12-04');
+    await unsolve(db, 3);
+    expect(Object.keys(await getProgress(db))).toEqual(['4']);
+  });
+
+  it('Tag 24 zurücksetzen erlaubt das Finale erneut', async () => {
+    await markSolved(db, 24, '2026-12-24');
+    await setSetting(db, 'finaleSeen', true);
+    await unsolve(db, 24);
+    expect((await getSettings(db)).finaleSeen).toBe(false);
+  });
+
+  it('alle Fotos löschen', async () => {
+    await addPhoto(db, 3, new Blob(['x']), '2026-12-03T10:00:00');
+    await addPhoto(db, 9, new Blob(['y']), '2026-12-09T10:00:00');
+    await deleteAllPhotos(db);
+    expect(await getPhotos(db)).toEqual([]);
   });
 });
 

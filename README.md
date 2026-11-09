@@ -51,7 +51,11 @@ Nach 15 Minuten ohne Aktivität oder mit „Zurück zur Kinderansicht“ ist der
   Gibt es für eine Sprache keine Aufnahme, sieht das Kind den Sprachknopf nicht. Fehlen beide Aufnahmen, ist der Play-Button grau.
 
 **Testmodus:** Ein Datum wählen oder mit „+1 Tag“ weiterschalten. Unten erscheint ein gestreiftes Band, solange er aktiv ist.
-**Fortschritt zurücksetzen** löscht nur die gelösten Fälle. Aufnahmen, Codes und Fotos bleiben erhalten.
+- **Testdaten löschen:** Beendet den Testmodus, setzt alle Fälle auf „ungelöst“ und löscht alle Fotos. Aufnahmen und Codes bleiben erhalten.
+- **Nur Fälle zurücksetzen:** wie oben, aber Fotos bleiben.
+- **Einzelnen Fall zurücksetzen:** in der Tagesliste die Zeile öffnen und „Fall zurücksetzen“ wählen.
+
+**Sprachnachrichten:** Textentwürfe für alle 24 Tage stehen in [`docs/sprechtexte.md`](docs/sprechtexte.md).
 
 **Ton:** Effekt-Töne an/aus und Lautstärke.
 

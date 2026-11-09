@@ -77,6 +77,16 @@ export async function markSolved(db: DB, tag: number, at: string): Promise<Solve
   return s;
 }
 
+/** Einen einzelnen Fall wieder auf „ungelöst“ setzen (z. B. nach dem Testen). */
+export async function unsolve(db: DB, tag: number): Promise<void> {
+  await db.delete('progress', tag);
+  if (tag === 24) await setSetting(db, 'finaleSeen', false);
+}
+
+export async function deleteAllPhotos(db: DB): Promise<void> {
+  await db.clear('photos');
+}
+
 export async function resetProgress(db: DB): Promise<void> {
   await db.clear('progress');
   await setSetting(db, 'finaleSeen', false);

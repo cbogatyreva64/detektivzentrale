@@ -462,15 +462,26 @@ button:focus-visible {
 }
 .key {
   height: 84px;
+  padding: 0;
   border-radius: 22px;
   background: var(--c-card);
   color: var(--c-navy);
   font-size: 44px;
   font-weight: 900;
-  display: grid;
-  place-items: center;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   box-shadow: var(--shadow);
   transition: transform 0.08s, opacity 0.2s;
+}
+/* Ziffer optisch exakt mittig: Text-Box auf Großbuchstabenhöhe bis Grundlinie
+   zuschneiden. Sonst sitzen Ziffern je nach Schrift (iPad: SF Rounded) zu hoch oder zu tief. */
+.key-digit {
+  display: block;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  text-box: trim-both cap alphabetic;
 }
 .key-erase {
   background: var(--c-paper-2);
@@ -1405,4 +1416,12 @@ button:focus-visible {
   color: #fff;
   font-size: 22px;
   line-height: 1;
+}
+
+.p-reset {
+  margin-top: 12px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: #fbefec;
+  border: 2px solid #f3d9d5;
 }
