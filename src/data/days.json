@@ -1,0 +1,218 @@
+[
+  {
+    "tag": 1,
+    "datum": "2026-12-01",
+    "typ": "pixi",
+    "titel": "Die verschwundene Lupe",
+    "fund": "Pixi: Minecraft + Detektivausweis",
+    "code": 5,
+    "tagebuch": false
+  },
+  {
+    "tag": 2,
+    "datum": "2026-12-02",
+    "typ": "lego",
+    "titel": "Der Reim an der Garderobe",
+    "fund": "Lego 1",
+    "code": 7,
+    "tagebuch": false
+  },
+  {
+    "tag": 3,
+    "datum": "2026-12-03",
+    "typ": "experiment",
+    "titel": "Das geheimnisvolle Säckchen",
+    "fund": "Pfeffer flieht",
+    "code": 7,
+    "tagebuch": true
+  },
+  {
+    "tag": 4,
+    "datum": "2026-12-04",
+    "typ": "pixi",
+    "titel": "Der Schatten im Museum",
+    "fund": "Pixi: Dinosaurier",
+    "code": 6,
+    "tagebuch": false
+  },
+  {
+    "tag": 5,
+    "datum": "2026-12-05",
+    "typ": "experiment",
+    "titel": "Die Geräusche in der alten Villa",
+    "fund": "Dino-Eis",
+    "code": 4,
+    "tagebuch": true
+  },
+  {
+    "tag": 6,
+    "datum": "2026-12-06",
+    "typ": "lego",
+    "titel": "Post vom Nikolaus",
+    "fund": "Lego 2",
+    "code": 7,
+    "tagebuch": false
+  },
+  {
+    "tag": 7,
+    "datum": "2026-12-07",
+    "typ": "pixi",
+    "titel": "Die geheimnisvollen Fußspuren",
+    "fund": "Pixi",
+    "code": 5,
+    "tagebuch": false
+  },
+  {
+    "tag": 8,
+    "datum": "2026-12-08",
+    "typ": "lego",
+    "titel": "Das Foto aus dem Archiv",
+    "fund": "Lego 3",
+    "code": 1,
+    "tagebuch": false
+  },
+  {
+    "tag": 9,
+    "datum": "2026-12-09",
+    "typ": "experiment",
+    "titel": "Der Zahlen-Code",
+    "fund": "Kresse",
+    "code": 7,
+    "tagebuch": true
+  },
+  {
+    "tag": 10,
+    "datum": "2026-12-10",
+    "typ": "pixi",
+    "titel": "Das zerrissene Bild",
+    "fund": "Pixi: Vulkane",
+    "code": 18,
+    "tagebuch": false
+  },
+  {
+    "tag": 11,
+    "datum": "2026-12-11",
+    "typ": "lego",
+    "titel": "Der Reim im Schlafzimmer",
+    "fund": "Lego 4",
+    "code": 8,
+    "tagebuch": false
+  },
+  {
+    "tag": 12,
+    "datum": "2026-12-12",
+    "typ": "experiment",
+    "titel": "Die große Schatzsuche",
+    "fund": "Natron-Vulkan",
+    "code": 9,
+    "tagebuch": true
+  },
+  {
+    "tag": 13,
+    "datum": "2026-12-13",
+    "typ": "pixi",
+    "titel": "Wer war im Zimmer?",
+    "fund": "Pixi",
+    "code": 10,
+    "tagebuch": false
+  },
+  {
+    "tag": 14,
+    "datum": "2026-12-14",
+    "typ": "lego",
+    "titel": "Der Schritte-Code",
+    "fund": "Lego 5",
+    "code": 7,
+    "tagebuch": false
+  },
+  {
+    "tag": 15,
+    "datum": "2026-12-15",
+    "typ": "experiment",
+    "titel": "Der Reim im Badezimmer",
+    "fund": "Schwimmt oder sinkt?",
+    "code": 14,
+    "tagebuch": true
+  },
+  {
+    "tag": 16,
+    "datum": "2026-12-16",
+    "typ": "pixi",
+    "titel": "Der Würfel-Code",
+    "fund": "Pixi",
+    "code": 8,
+    "tagebuch": false
+  },
+  {
+    "tag": 17,
+    "datum": "2026-12-17",
+    "typ": "lego",
+    "titel": "Der Reim in der Küche",
+    "fund": "Lego 6",
+    "code": 12,
+    "tagebuch": false
+  },
+  {
+    "tag": 18,
+    "datum": "2026-12-18",
+    "typ": "pixi",
+    "titel": "Ein Anruf vom Kommissar",
+    "fund": "Pixi",
+    "code": 6,
+    "tagebuch": false
+  },
+  {
+    "tag": 19,
+    "datum": "2026-12-19",
+    "typ": "experiment",
+    "titel": "Wer war in der Küche?",
+    "fund": "Rotkohl-Farbzauber",
+    "code": 9,
+    "tagebuch": true
+  },
+  {
+    "tag": 20,
+    "datum": "2026-12-20",
+    "typ": "lego",
+    "titel": "Der Reim im Bad",
+    "fund": "Lego 7",
+    "code": 16,
+    "tagebuch": false
+  },
+  {
+    "tag": 21,
+    "datum": "2026-12-21",
+    "typ": "pixi",
+    "titel": "Die Spürnase",
+    "fund": "Pixi",
+    "code": 7,
+    "tagebuch": false
+  },
+  {
+    "tag": 22,
+    "datum": "2026-12-22",
+    "typ": "experiment",
+    "titel": "Das fehlende Beweisstück",
+    "fund": "Magnete",
+    "code": 1,
+    "tagebuch": true
+  },
+  {
+    "tag": 23,
+    "datum": "2026-12-23",
+    "typ": "pixi",
+    "titel": "Die unsichtbare Botschaft",
+    "fund": "Pixi",
+    "code": 9,
+    "tagebuch": false
+  },
+  {
+    "tag": 24,
+    "datum": "2026-12-24",
+    "typ": "lego",
+    "titel": "Der letzte Fall",
+    "fund": "Lego 8 – Finale",
+    "code": 12,
+    "tagebuch": false
+  }
+]
