@@ -49,6 +49,9 @@ Nach 15 Minuten ohne Aktivität oder mit „Zurück zur Kinderansicht“ ist der
 - **Aufnahme** für Deutsch (D) und Russisch (Д): „Aufnehmen“, dann „Stopp“. Danach anhören und bei Bedarf neu aufnehmen.
   Alternativ eine fertige Audio-Datei hochladen, z. B. ein Sprachmemo als `.m4a`. Beim ersten Aufnehmen fragt Safari nach dem Mikrofon.
   Gibt es für eine Sprache keine Aufnahme, sieht das Kind den Sprachknopf nicht. Fehlen beide Aufnahmen, ist der Play-Button grau.
+- **Detektiv-Effekt** (standardmäßig an): Die Stimme klingt wie über Funk, darunter läuft leise Krimi-Musik,
+  am Anfang rauscht das Funkgerät, am Ende piept es. Die App mischt das selbst, ohne Internet.
+  Das Original bleibt gespeichert, der Haken lässt sich jederzeit wieder entfernen.
 
 **Testmodus:** Ein Datum wählen oder mit „+1 Tag“ weiterschalten. Unten erscheint ein gestreiftes Band, solange er aktiv ist.
 - **Testdaten löschen:** Beendet den Testmodus, setzt alle Fälle auf „ungelöst“ und löscht alle Fotos. Aufnahmen und Codes bleiben erhalten.

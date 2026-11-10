@@ -1425,3 +1425,11 @@ button:focus-visible {
   background: #fbefec;
   border: 2px solid #f3d9d5;
 }
+.rec-fx {
+  font-size: 15px;
+}
+.rec-busy {
+  margin: 0;
+  padding: 10px 0;
+  font-weight: 700;
+}

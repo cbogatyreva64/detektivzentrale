@@ -124,8 +124,8 @@ export async function changeCode(tag: number, code: number | null) {
   await reload();
 }
 
-export async function storeRecording(tag: number, lang: Lang, blob: Blob) {
-  await saveRecording(db(), tag, lang, blob);
+export async function storeRecording(tag: number, lang: Lang, blob: Blob, fx?: { original: Blob }) {
+  await saveRecording(db(), tag, lang, blob, fx);
   await reload();
 }
 

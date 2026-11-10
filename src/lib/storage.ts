@@ -13,6 +13,9 @@ export interface Recording {
   blob: Blob;
   mime: string;
   updatedAt: string;
+  /** Unbearbeitete Aufnahme, falls `blob` die Detektiv-Fassung ist. */
+  original?: Blob;
+  fx?: boolean;
 }
 
 export interface Photo {
@@ -123,7 +126,13 @@ export async function getRecordingIndex(db: DB): Promise<Record<number, Lang[]>>
   return out;
 }
 
-export async function saveRecording(db: DB, tag: number, lang: Lang, blob: Blob): Promise<void> {
+export async function saveRecording(
+  db: DB,
+  tag: number,
+  lang: Lang,
+  blob: Blob,
+  fx?: { original: Blob },
+): Promise<void> {
   await db.put('recordings', {
     key: recKey(tag, lang),
     tag,
@@ -131,6 +140,7 @@ export async function saveRecording(db: DB, tag: number, lang: Lang, blob: Blob)
     blob,
     mime: blob.type,
     updatedAt: new Date().toISOString(),
+    ...(fx ? { original: fx.original, fx: true } : {}),
   });
 }
 

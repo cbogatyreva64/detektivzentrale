@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'preact/hooks';
 import type { Lang } from '../../lib/days';
+import { renderDetective } from '../../lib/detectiveFx';
 import { canRecord, startRecording, validateAudioFile, type ActiveRecording } from '../../lib/recorder';
 import { getRecording } from '../../lib/storage';
 import { getState, removeRecording, storeRecording, useAppState } from '../../store';
@@ -10,6 +11,8 @@ const LANG_LABEL: Record<Lang, string> = { de: 'Deutsch (D)', ru: 'Russisch (Д)
 export function RecorderCell({ tag, lang, present }: { tag: number; lang: Lang; present: boolean }) {
   const { recordings } = useAppState();
   const [src, setSrc] = useState<string | null>(null);
+  const [fx, setFx] = useState(true); // Detektiv-Effekt für neue Aufnahmen bzw. Stand der vorhandenen
+  const [busy, setBusy] = useState(false);
   const [recording, setRecording] = useState(false);
   const [seconds, setSeconds] = useState(0);
   const [error, setError] = useState<string | null>(null);
@@ -25,6 +28,7 @@ export function RecorderCell({ tag, lang, present }: { tag: number; lang: Lang; 
     if (present && db) {
       void getRecording(db, tag, lang).then((r) => {
         if (cancelled || !r) return;
+        setFx(!!r.fx);
         url = URL.createObjectURL(r.blob);
         setSrc(url);
       });
@@ -63,13 +67,31 @@ export function RecorderCell({ tag, lang, present }: { tag: number; lang: Lang; 
     if (r) await save(await r.stop());
   }
 
+  /** Speichert die Aufnahme, auf Wunsch mit Detektiv-Effekt (Original bleibt erhalten). */
+  async function store(original: Blob, withFx: boolean) {
+    if (!withFx) {
+      await storeRecording(tag, lang, original);
+      return;
+    }
+    setBusy(true);
+    try {
+      const out = await renderDetective(original);
+      await storeRecording(tag, lang, out, { original });
+    } catch {
+      setError('Der Detektiv-Effekt hat nicht geklappt. Die Aufnahme ist ohne Effekt gespeichert.');
+      await storeRecording(tag, lang, original);
+    } finally {
+      setBusy(false);
+    }
+  }
+
   async function save(blob: Blob) {
     setRecording(false);
     if (blob.size === 0) {
       setError('Die Aufnahme ist leer.');
       return;
     }
-    await storeRecording(tag, lang, blob);
+    await store(blob, fx);
   }
 
   async function upload(e: Event) {
@@ -83,7 +105,17 @@ export function RecorderCell({ tag, lang, present }: { tag: number; lang: Lang; 
       return;
     }
     setError(null);
-    await storeRecording(tag, lang, f);
+    await store(f, fx);
+  }
+
+  async function toggleFx(on: boolean) {
+    setFx(on);
+    setError(null);
+    const db = getState().db;
+    if (!present || !db) return; // gilt dann für die nächste Aufnahme
+    const r = await getRecording(db, tag, lang);
+    if (!r || !!r.fx === on) return;
+    await store(r.original ?? r.blob, on);
   }
 
   async function remove() {
@@ -97,7 +129,16 @@ export function RecorderCell({ tag, lang, present }: { tag: number; lang: Lang; 
         <span class={`pill ${present ? 'pill-ok' : 'pill-missing'}`}>{present ? 'vorhanden' : 'fehlt'}</span>
       </div>
 
-      {src && !recording && <audio class="rec-audio" controls src={src} preload="metadata" />}
+      {busy ? (
+        <p class="p-note rec-busy">🕵️ Detektiv-Effekt wird gemischt …</p>
+      ) : (
+        src && !recording && <audio class="rec-audio" controls src={src} preload="metadata" />
+      )}
+
+      <label class="p-check rec-fx">
+        <input type="checkbox" checked={fx} disabled={busy || recording} onChange={(e) => void toggleFx(e.currentTarget.checked)} />
+        Detektiv-Effekt (Funkstimme + Krimi-Musik)
+      </label>
 
       <div class="rec-actions">
         {recording ? (
@@ -106,16 +147,16 @@ export function RecorderCell({ tag, lang, present }: { tag: number; lang: Lang; 
           </button>
         ) : (
           canRecord() && (
-            <button class="p-btn p-rec" onClick={start}>
+            <button class="p-btn p-rec" onClick={start} disabled={busy}>
               ● {present ? 'Neu aufnehmen' : 'Aufnehmen'}
             </button>
           )
         )}
-        <button class="p-btn" onClick={() => fileInput.current?.click()} disabled={recording}>
+        <button class="p-btn" onClick={() => fileInput.current?.click()} disabled={recording || busy}>
           Datei hochladen
         </button>
         {present && !recording && (
-          <button class="p-btn p-danger" onClick={remove}>
+          <button class="p-btn p-danger" onClick={remove} disabled={busy}>
             Löschen
           </button>
         )}
