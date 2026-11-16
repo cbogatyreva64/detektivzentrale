@@ -51,7 +51,7 @@ export function DayView({ tag }: { tag: number }) {
   }
 
   return (
-    <main class="screen day">
+    <main class="screen kid day">
       <header class="topbar">
         <button class="round-btn" onClick={() => { sfx.tap(); go(''); }} aria-label="Zurück zum Kalender">
           <IconHome size={40} />

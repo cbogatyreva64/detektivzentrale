@@ -5,6 +5,7 @@ const INK: Record<FundTyp, string> = {
   lego: 'var(--c-red)',
   experiment: 'var(--c-green)',
   pixi: 'var(--c-blue)',
+  buch: 'var(--c-navy)',
 };
 
 /** Leichte, aber feste Schräglage pro Tag – wirkt wie echt gestempelt. */

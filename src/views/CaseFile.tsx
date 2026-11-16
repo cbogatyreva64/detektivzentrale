@@ -12,7 +12,7 @@ export function CaseFile() {
   const master = !!progress[24];
 
   return (
-    <main class="screen akte">
+    <main class="screen kid akte">
       <header class="topbar">
         <button class="round-btn" onClick={() => { sfx.tap(); go(''); }} aria-label="Zurück zum Kalender">
           <IconHome size={40} />

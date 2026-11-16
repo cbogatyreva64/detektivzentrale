@@ -355,6 +355,7 @@ button:focus-visible {
 .fund-lego { color: var(--c-red); }
 .fund-experiment { color: var(--c-green); }
 .fund-pixi { color: var(--c-blue); }
+.fund-buch { color: var(--c-navy); }
 
 .lang-switch {
   display: flex;
@@ -1432,4 +1433,263 @@ button:focus-visible {
   margin: 0;
   padding: 10px 0;
   font-weight: 700;
+}
+
+/* =====================================================================
+   Kinderansicht: „Detektiv-Nacht“
+   Schwarz mit Weiß, Blau und Rot. Elternbereich und Druck bleiben hell,
+   deshalb gilt alles hier nur innerhalb von .kid.
+   ===================================================================== */
+html:has(.kid),
+html:has(.kid) body {
+  background-color: #0b0c10;
+}
+html:has(.kid) body {
+  background-image:
+    radial-gradient(ellipse 90% 55% at 50% -10%, rgba(40, 110, 220, 0.18), transparent 70%),
+    radial-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 100% 100%, 22px 22px;
+  background-attachment: fixed, scroll;
+}
+
+.kid {
+  --k-bg: #0b0c10;
+  --k-surface: #16191f;
+  --k-surface-2: #22262e;
+  --k-line: rgba(255, 255, 255, 0.12);
+  --k-text: #f4f5f7;
+  --k-muted: #8c95a1;
+  --k-blue: #2f7ff0;
+  --k-blue-deep: #1a56b8;
+  --k-red: #e23a3a;
+  --k-red-deep: #b4242a;
+  --k-paper: #f3f0e8; /* Stempel und Fund-Symbole wie Papier */
+  --c-muted: var(--k-muted);
+  --shadow: 0 4px 0 rgba(0, 0, 0, 0.55), 0 12px 26px rgba(0, 0, 0, 0.45);
+  color: var(--k-text);
+}
+
+/* Kopfzeile */
+.kid .round-btn {
+  background: var(--k-surface);
+  color: var(--k-text);
+  border: 2px solid var(--k-line);
+}
+.kid .btn-green {
+  background: var(--k-blue);
+  border-color: transparent;
+}
+.kid.akte .round-btn,
+.kid.journal .round-btn,
+.kid.day .round-btn {
+  background: var(--k-surface);
+}
+.kid .brand-mark {
+  background: var(--k-red);
+  color: #fff;
+  box-shadow: 0 0 0 3px var(--k-bg), 0 0 0 5px var(--k-red), var(--shadow);
+}
+.kid .brand-text {
+  color: var(--k-text);
+  text-transform: uppercase;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  line-height: 1.1;
+  padding-bottom: 6px;
+  border-bottom: 4px solid var(--k-blue);
+}
+.kid .topbar-actions .round-btn:last-child {
+  background: var(--k-red);
+  border-color: transparent;
+}
+
+/* Kalender-Türen: schwarz, weißer Rahmen, rote Klinke */
+.kid .door {
+  background: linear-gradient(160deg, #1b1f26, #101216);
+  color: var(--k-text);
+  border: 2px solid var(--k-line);
+}
+.kid .door::before {
+  border-color: rgba(255, 255, 255, 0.1);
+}
+.kid .door::after {
+  background: var(--k-red);
+  opacity: 1;
+}
+.kid .door.is-today {
+  border-color: var(--k-blue);
+  box-shadow: 0 0 0 4px var(--k-blue), 0 0 28px rgba(47, 127, 240, 0.55), var(--shadow);
+}
+.kid .door-locked {
+  background: #121418;
+  color: #4a515c;
+  border-color: rgba(255, 255, 255, 0.06);
+}
+.kid .door-locked::after {
+  background: #3a3f48;
+}
+.kid .door-solved {
+  background: var(--k-surface-2);
+  color: var(--k-muted);
+}
+.kid .door-solved::before {
+  border-color: rgba(255, 255, 255, 0.06);
+}
+
+/* Stempel bleiben „Papier mit Tinte“ */
+.kid .stamp {
+  background: var(--k-paper);
+  box-shadow: inset 0 0 0 calc(var(--s) * 0.035) var(--k-paper), inset 0 0 0 calc(var(--s) * 0.06) currentColor;
+  opacity: 1;
+}
+
+/* Tagesansicht */
+.kid .day-badge {
+  background: var(--k-blue);
+  color: #fff;
+}
+.kid .play-btn {
+  background: var(--k-red);
+  color: #fff;
+  box-shadow: 0 0 0 6px var(--k-bg), 0 0 0 8px rgba(226, 58, 58, 0.5), var(--shadow);
+}
+.kid .ring-bg {
+  stroke: rgba(255, 255, 255, 0.12);
+}
+.kid .ring-fg {
+  stroke: #fff;
+}
+.kid .player.is-empty .play-btn {
+  background: var(--k-surface-2);
+  color: #4a515c;
+  box-shadow: none;
+}
+.kid .fund-icon {
+  background: var(--k-paper);
+}
+.kid .fund-buch {
+  color: #1f3a5f;
+}
+.kid .lang-btn {
+  background: var(--k-surface);
+  color: var(--k-text);
+  border: 2px solid var(--k-line);
+}
+.kid .lang-btn.is-active {
+  border-color: var(--k-blue);
+  box-shadow: 0 0 0 3px var(--k-blue), var(--shadow);
+}
+.kid .day-title {
+  color: var(--k-muted);
+}
+
+/* Zahlenschloss: Metall-Schloss, schwarze Tasten mit weißen Ziffern */
+.kid .shackle {
+  color: #a9b2bd;
+}
+.kid .lock-body {
+  background: linear-gradient(180deg, var(--k-blue), var(--k-blue-deep));
+}
+.kid .padlock.is-open .lock-body {
+  background: var(--c-green);
+}
+.kid .lock-window {
+  background: #0b0c10;
+  box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.7);
+}
+.kid .lock-digits {
+  color: #fff;
+}
+.kid .key {
+  background: var(--k-surface);
+  color: var(--k-text);
+  border: 2px solid var(--k-line);
+}
+.kid .key-erase {
+  background: var(--k-surface-2);
+  color: var(--k-muted);
+}
+.kid .key-ok {
+  background: var(--k-red);
+  border-color: transparent;
+  color: #fff;
+}
+.kid .die,
+.kid .frame {
+  border-color: rgba(255, 255, 255, 0.85);
+}
+.kid .die .dot.on,
+.kid .frame .dot.on {
+  background: #fff;
+  border-color: #fff;
+}
+.kid .frame .dot {
+  border-color: rgba(255, 255, 255, 0.25);
+}
+.kid .big-btn {
+  background: var(--k-blue);
+  color: #fff;
+}
+
+/* Fallakte: dunkle Akte mit feinen Linien */
+.kid .akte-label,
+.kid .akte-master {
+  color: var(--k-text);
+}
+.kid .stamp-grid {
+  background-color: var(--k-surface);
+  background-image: repeating-linear-gradient(transparent 0 39px, rgba(255, 255, 255, 0.04) 39px 40px);
+  border: 2px solid var(--k-line);
+  border-top: 6px solid var(--k-red);
+}
+.kid .slot-empty {
+  border-color: rgba(255, 255, 255, 0.16);
+  color: rgba(255, 255, 255, 0.22);
+}
+
+/* Meisterdetektiv */
+.kid .finale {
+  background: rgba(5, 6, 9, 0.92);
+}
+.kid .finale-title {
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  text-shadow: 0 3px 0 var(--k-red);
+}
+
+/* Forschertagebuch */
+.kid .journal-label {
+  color: var(--k-text);
+}
+.kid .exp-card,
+.kid .research {
+  background: var(--k-surface);
+  border: 2px solid var(--k-line);
+}
+.kid .exp-card.is-pending {
+  background: transparent;
+  border: 2px dashed rgba(255, 255, 255, 0.14);
+}
+.kid .exp-placeholder {
+  background: var(--k-surface-2);
+}
+.kid .thumb {
+  background: var(--k-surface-2);
+}
+.kid .camera-btn {
+  background: var(--k-red);
+}
+
+/* Zugang Elternbereich: unauffällig hell auf dunkel */
+.kid .longpress {
+  color: #fff;
+  opacity: 0.18;
+}
+.kid .longpress.is-pressing {
+  opacity: 0.6;
+}
+
+.loading {
+  background: #0b0c10;
 }

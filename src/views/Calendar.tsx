@@ -4,7 +4,7 @@ import { doorState } from '../lib/dateLock';
 import { sfx } from '../lib/sounds';
 import { go } from '../router';
 import { useAppState } from '../store';
-import { IconFolder, IconJournal, IconKey, IconLock } from '../components/Icons';
+import { IconFolder, IconJournal, IconKey, IconLock, IconLupe } from '../components/Icons';
 import { LongPress } from '../components/LongPress';
 import { Stamp } from '../components/Stamp';
 
@@ -30,11 +30,11 @@ export function Calendar({ nudge }: { nudge?: number }) {
   }
 
   return (
-    <main class="screen calendar">
+    <main class="screen kid calendar">
       <header class="topbar">
         <div class="brand" aria-label="Detektivzentrale">
-          <span class="brand-mark">?</span>
-          <span class="brand-text">Detektivzentrale</span>
+          <span class="brand-mark"><IconLupe size={38} /></span>
+          <span class="brand-text">Detektiv<wbr />zentrale</span>
         </div>
         <div class="topbar-actions">
           <button class="round-btn btn-green" onClick={() => { sfx.tap(); go('tagebuch'); }} aria-label="Forschertagebuch">

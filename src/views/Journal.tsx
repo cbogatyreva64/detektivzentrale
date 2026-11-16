@@ -12,7 +12,7 @@ import { Stamp } from '../components/Stamp';
 export function Journal() {
   const experiments = DAYS.filter((d) => d.tagebuch);
   return (
-    <main class="screen journal">
+    <main class="screen kid journal">
       <header class="topbar">
         <button class="round-btn" onClick={() => { sfx.tap(); go(''); }} aria-label="Zurück zum Kalender">
           <IconHome size={40} />

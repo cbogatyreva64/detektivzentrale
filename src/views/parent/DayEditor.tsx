@@ -5,7 +5,7 @@ import type { Day } from '../../lib/days';
 import { changeCode, unsolveDay, useAppState } from '../../store';
 import { RecorderCell } from './RecorderCell';
 
-const TYP_LABEL = { lego: 'Lego', experiment: 'Experiment', pixi: 'Pixi' } as const;
+const TYP_LABEL = { lego: 'Lego', experiment: 'Experiment', pixi: 'Pixi', buch: 'Buch' } as const;
 
 export function DayEditor({ day }: { day: Day }) {
   const { overrides, recordings, progress } = useAppState();

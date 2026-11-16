@@ -1,6 +1,6 @@
 import raw from '../data/days.json';
 
-export type FundTyp = 'lego' | 'experiment' | 'pixi';
+export type FundTyp = 'lego' | 'experiment' | 'pixi' | 'buch';
 export type Lang = 'de' | 'ru';
 
 export interface Day {

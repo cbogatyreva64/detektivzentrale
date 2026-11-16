@@ -145,6 +145,6 @@ Für die russischen Aufnahmen (Д) dieselbe Struktur nutzen. Anfang und Schluss 
 
 > Внимание, внимание! Говорит Детективный центр. Новое дело для детектива [Имя]!
 
-> На месте находки наклеена бумажка с числом. Набери это число на кодовом замке. Удачи, детектив! Конец сообщения.
+> На месте находки наклеена бумажка с числом. Набери это число на кодовом замке. Удачи, детектив! Конец связи!
 
-Wenn du möchtest, übersetze ich alle 24 Texte ins Russische, sobald die deutschen Fassungen feststehen.
+Alle 24 Texte auf Russisch stehen in [`sprechtexte-ru.md`](sprechtexte-ru.md).

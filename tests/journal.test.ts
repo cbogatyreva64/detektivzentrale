@@ -38,6 +38,6 @@ describe('Tagebuch', () => {
   });
 
   it('enthält genau die Experiment-Tage', () => {
-    expect(DAYS.filter((d) => d.tagebuch).map((d) => d.tag)).toEqual([3, 5, 9, 12, 15, 19, 22]);
+    expect(DAYS.filter((d) => d.tagebuch).map((d) => d.tag)).toEqual([3, 5, 9, 12, 15, 19, 21, 22]);
   });
 });

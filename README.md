@@ -80,7 +80,7 @@ Nach 15 Minuten ohne Aktivität oder mit „Zurück zur Kinderansicht“ ist der
   Die eingetippte Zahl erscheint auch als Punkte, damit das Kind sie mit dem Sticker vergleichen kann.
   Bei einer falschen Zahl wackelt das Schloss freundlich. Bei der richtigen springt es auf, und der Stempel fliegt in die Fallakte.
 - **Fallakte** (Ordner-Symbol): alle Stempel. Nach dem 24. gibt es die Medaille „Meisterdetektiv“.
-- **Forschertagebuch** (grünes Heft): An Experiment-Tagen (3, 5, 9, 12, 15, 19, 22) gibt es nach dem Lösen einen Kamera-Button.
+- **Forschertagebuch** (grünes Heft): An Experiment-Tagen (3, 5, 9, 12, 15, 19, 21, 22) gibt es nach dem Lösen einen Kamera-Button.
   Die Kresse (Tag 9) erscheint als Zeitreihe mit einem Punkt pro Tag. Fotos werden auf höchstens 1600 px verkleinert.
 
 ## 5. Entwicklung

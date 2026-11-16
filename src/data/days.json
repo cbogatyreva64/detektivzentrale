@@ -2,9 +2,9 @@
   {
     "tag": 1,
     "datum": "2026-12-01",
-    "typ": "pixi",
+    "typ": "buch",
     "titel": "Die verschwundene Lupe",
-    "fund": "Pixi: Minecraft + Detektivausweis",
+    "fund": "Detektivbuch 1",
     "code": 5,
     "tagebuch": false
   },
@@ -48,7 +48,7 @@
     "tag": 6,
     "datum": "2026-12-06",
     "typ": "lego",
-    "titel": "Post vom Nikolaus",
+    "titel": "Der Reim am Bücherregal",
     "fund": "Lego 2",
     "code": 7,
     "tagebuch": false
@@ -56,9 +56,9 @@
   {
     "tag": 7,
     "datum": "2026-12-07",
-    "typ": "pixi",
+    "typ": "buch",
     "titel": "Die geheimnisvollen Fußspuren",
-    "fund": "Pixi",
+    "fund": "Detektivbuch 2",
     "code": 5,
     "tagebuch": false
   },
@@ -110,9 +110,9 @@
   {
     "tag": 13,
     "datum": "2026-12-13",
-    "typ": "pixi",
+    "typ": "buch",
     "titel": "Wer war im Zimmer?",
-    "fund": "Pixi",
+    "fund": "Detektivbuch 3",
     "code": 10,
     "tagebuch": false
   },
@@ -139,7 +139,7 @@
     "datum": "2026-12-16",
     "typ": "pixi",
     "titel": "Der Würfel-Code",
-    "fund": "Pixi",
+    "fund": "Pixi: Minecraft",
     "code": 8,
     "tagebuch": false
   },
@@ -155,9 +155,9 @@
   {
     "tag": 18,
     "datum": "2026-12-18",
-    "typ": "pixi",
+    "typ": "buch",
     "titel": "Ein Anruf vom Kommissar",
-    "fund": "Pixi",
+    "fund": "Detektivbuch 4",
     "code": 6,
     "tagebuch": false
   },
@@ -182,11 +182,11 @@
   {
     "tag": 21,
     "datum": "2026-12-21",
-    "typ": "pixi",
+    "typ": "experiment",
     "titel": "Die Spürnase",
-    "fund": "Pixi",
+    "fund": "Fingerabdrücke",
     "code": 7,
-    "tagebuch": false
+    "tagebuch": true
   },
   {
     "tag": 22,
@@ -200,9 +200,9 @@
   {
     "tag": 23,
     "datum": "2026-12-23",
-    "typ": "pixi",
+    "typ": "buch",
     "titel": "Die unsichtbare Botschaft",
-    "fund": "Pixi",
+    "fund": "Detektivbuch 5",
     "code": 9,
     "tagebuch": false
   },
